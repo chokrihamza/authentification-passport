@@ -28,10 +28,9 @@ exports.getOwner = async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 exports.postProfile = async (req, res) => {
-      console.log(req.file);
+      console.log(req.file)
       // destructure the request
       const {
-
             location,
             status,
             farmerDomaine,
@@ -41,10 +40,16 @@ exports.postProfile = async (req, res) => {
       const newprofile = {};
 
       newprofile.user = req.user.id;
-      newprofile.image = req.file.path;
       newprofile.location = location;
       newprofile.status = status;
       newprofile.adresse = adresse;
+      if (req.file !== undefined) {
+            newprofile.image = req.file.path;
+      } else {
+            return res.status(401).json({ msg: "image filed is required" })
+      }
+
+
 
       // farmerDomaine - Spilt into array
       if (farmerDomaine) {
@@ -114,5 +119,23 @@ exports.getProfileByUserId = async (req, res) => {
                   return res.status(400).json({ msg: "Profile not found" });
             }
             return res.status(500).json({ msg: 'Server error' });
+      }
+}
+// @route    DELETE api/profile
+// @desc     Delete profile, user & posts
+// @access   Private
+exports.deleteProfile = async (req, res) => {
+      try {
+            // Remove users posts
+            //await Post.deleteMany({ user: req.user.id });
+            // Remove profile
+            await Profile.findOneAndRemove({ user: req.user.id });
+            // Remove user
+            await User.findOneAndRemove({ _id: req.user.id });
+
+            res.json({ msg: 'User deleted' });
+      } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Server Error');
       }
 }

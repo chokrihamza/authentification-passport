@@ -7,8 +7,12 @@ require('./config/dbConnect')();
 const express = require('express');
 const app = express();
 // Express body parser
+app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+
+// create user route
 app.use('/user', require('./Routes/user'));
 //create profile routes
 app.use('/profile', require('./Routes/profile'))
