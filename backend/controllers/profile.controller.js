@@ -28,9 +28,10 @@ exports.getOwner = async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 exports.postProfile = async (req, res) => {
+      console.log(req.file);
       // destructure the request
       const {
-            image,
+
             location,
             status,
             farmerDomaine,
@@ -38,8 +39,9 @@ exports.postProfile = async (req, res) => {
       } = req.body
 
       const newprofile = {};
+
       newprofile.user = req.user.id;
-      newprofile.image = image;
+      newprofile.image = req.file.path;
       newprofile.location = location;
       newprofile.status = status;
       newprofile.adresse = adresse;

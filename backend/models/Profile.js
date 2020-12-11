@@ -49,10 +49,9 @@ const ProfileSchema = new mongoose.Schema({
 
       }],
 
-      date: {
-            type: Date,
-            default: Date.now
-      }
-});
+
+
+
+}, { timestamps: true });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

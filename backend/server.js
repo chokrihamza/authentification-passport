@@ -10,6 +10,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/user', require('./Routes/user'));
+//create profile routes
+app.use('/profile', require('./Routes/profile'))
 const PORT = 5000
 app.listen(PORT, (err) => {
       err ? console.log(err) : console.log(`server running at port ${PORT}`)
