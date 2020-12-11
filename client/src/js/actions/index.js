@@ -20,6 +20,7 @@ export const register = newuser => async dispatsh => {
 
 
 
+
 }
 
 export const login = (credential) => async dispatsh => {
@@ -66,8 +67,11 @@ export const getProfile = () => async dispatsh => {
 
 }
 
+
 export const logout = () => {
       return {
             type: LOGOUT_USER,
       };
 };
+
+
