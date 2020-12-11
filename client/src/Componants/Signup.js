@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import FlashMessage from 'react-flash-message';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../js/actions/index';
 import { Redirect } from 'react-router-dom'
@@ -34,7 +34,7 @@ const Signup = () => {
          Register
             </h1>
                               {
-                                    errors ? (
+                                    (errors) ? (
                                           errors.errors.map((e, i) => (
                                                 <div key={i} className="alert alert-warning alert-dismissible fade show" role="alert">
                                                       <strong>{e.param}</strong> ${e.msg}.
@@ -56,13 +56,8 @@ const Signup = () => {
                               {
                                     (loading) ? (<div className="alert alert-info" role="alert">
                                           Please wait
-                                    </div>) : user ? (<Redirect to='/login' />) :
+                                    </div>) : user ? (<Redirect to='/login' />) : null
 
-                                                (<FlashMessage duration={1000} >
-                                                      <div className="alert alert-success" role="alert">
-                                                            Great
-                                     </div>
-                                                </FlashMessage>)
 
                               }
                               <div className="form-group">

@@ -6,6 +6,8 @@ require('./config/dbConnect')();
 //touch server.js
 const express = require('express');
 const app = express();
+const config = require('config');
+const PORT = config.get('PORT');
 // Express body parser
 app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
@@ -16,7 +18,7 @@ app.use(express.json());
 app.use('/user', require('./Routes/user'));
 //create profile routes
 app.use('/profile', require('./Routes/profile'))
-const PORT = 5000
+
 app.listen(PORT, (err) => {
       err ? console.log(err) : console.log(`server running at port ${PORT}`)
 })

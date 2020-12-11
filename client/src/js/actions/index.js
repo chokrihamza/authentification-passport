@@ -1,4 +1,4 @@
-import { REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAIL } from '../constants/action-types'
+import { REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER } from '../constants/action-types'
 import { GET_PROFILE, GET_PROFILE_SUCCESS, GET_PROFILE_FAIL } from '../constants/action-types.js'
 import axios from 'axios'
 export const register = newuser => async dispatsh => {
@@ -65,3 +65,9 @@ export const getProfile = () => async dispatsh => {
       }
 
 }
+
+export const logout = () => {
+      return {
+            type: LOGOUT_USER,
+      };
+};

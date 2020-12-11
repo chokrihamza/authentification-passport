@@ -4,7 +4,7 @@ import Signup from './Componants/Signup';
 import Signin from './Componants/Signin';
 import Profile from './Componants/Profile';
 import Welcom from './Componants/Welcom';
-import Logout from './Componants/Logout';
+
 function App() {
   return (
     <BrowserRouter>
@@ -13,7 +13,7 @@ function App() {
         <Route path='/register' component={Signup} />
         <Route path='/login' component={Signin} />
         <Route path='/profile' component={Profile} />
-        <Route path='/logout' component={Logout} />
+
 
 
 
