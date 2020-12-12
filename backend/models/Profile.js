@@ -13,10 +13,6 @@ const ProfileSchema = new mongoose.Schema({
             type: String,
             required: true,
       },
-      status: {
-            type: String,
-            required: true,
-      },
 
       farmerDomaine: {
             type: [String],
@@ -28,7 +24,7 @@ const ProfileSchema = new mongoose.Schema({
       },
       SeasonalProduct: [{
 
-            ProudctName: {
+            ProductName: {
                   type: String,
                   required: true
             },

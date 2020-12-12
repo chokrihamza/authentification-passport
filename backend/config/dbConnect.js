@@ -10,6 +10,7 @@ const connectDB = async () => {
             await mongoose.connect(mongoURI, {
                   useNewUrlParser: true,
                   useUnifiedTopology: true,
+                  useFindAndModify: false,
             })
             console.log(`dbAtlas connect successfully`);
       } catch (e) {

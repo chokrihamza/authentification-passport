@@ -19,7 +19,7 @@ exports.getOwner = async (req, res) => {
 
       } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ msg: 'Server error' });
       }
 
 }
@@ -32,7 +32,6 @@ exports.postProfile = async (req, res) => {
       // destructure the request
       const {
             location,
-            status,
             farmerDomaine,
             adresse
       } = req.body
@@ -41,7 +40,6 @@ exports.postProfile = async (req, res) => {
 
       newprofile.user = req.user.id;
       newprofile.location = location;
-      newprofile.status = status;
       newprofile.adresse = adresse;
       if (req.file !== undefined) {
             newprofile.image = req.file.path;
@@ -79,7 +77,7 @@ exports.postProfile = async (req, res) => {
 
       } catch (err) {
             console.log(err.message);
-            return res.status(500).send('Server Error');
+            return res.status(500).json({ msg: 'Server error' });
       }
 
 
@@ -95,7 +93,7 @@ exports.getAllProfiles = async (req, res) => {
             res.json(profiles);
       } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ msg: 'Server error' });
       }
 }
 
@@ -121,7 +119,7 @@ exports.getProfileByUserId = async (req, res) => {
             return res.status(500).json({ msg: 'Server error' });
       }
 }
-// @route    DELETE api/profile
+// @route    DELETE /profile
 // @desc     Delete profile, user & posts
 // @access   Private
 exports.deleteProfile = async (req, res) => {
@@ -136,6 +134,59 @@ exports.deleteProfile = async (req, res) => {
             res.json({ msg: 'User deleted' });
       } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server Error');
+            res.status(500).json({ msg: 'Server error' });
       }
+}
+// @route    PUT /profile/SeasonalProduct
+// @desc     Add SeasonalProduct to Profile
+// @access   Private
+exports.putSeasonalProduct = async (req, res) => {
+      const {
+            ProductName,
+            from,
+            to,
+            description
+      } = req.body;
+
+      try {
+            await Profile.findOneAndUpdate({ user: req.user.id },
+
+                  {
+                        $push: {
+                              SeasonalProduct: {
+                                    ProductName,
+                                    from,
+                                    to,
+                                    description
+                              }
+                        }
+                  }
+            );
+
+            res.status(200).json({ msg: "Seasonal Product added successfully" })
+      } catch (err) {
+            console.log(err.message);
+            res.status(500).json({ msg: 'Server error' });
+      }
+}
+// @route    DELETE /profile/SeasonalProduct/:SeasonalProduct_id
+// @desc     Delete SeasonalProduct from profile
+// @access   Private
+exports.deleteSeasonalProduct = async (req, res) => {
+      try {
+            const profile = await Profile.findOne({ user: req.user.id });
+            // search the index and remove it
+            const removeproduct = profile.SeasonalProduct.map(item => item.id)
+                  .indexOf(req.SeasonalProduct_id);
+            profile.SeasonalProduct.splice(removeproduct, 1)
+
+            await profile.save();
+            return res.status(200).json({ profile, msg: "Deleted Successfully" });
+
+      } catch (err) {
+            console.log(err.message);
+            res.status(500).json({ msg: 'Server error' });
+      }
+
+
 }

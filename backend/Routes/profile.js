@@ -1,11 +1,24 @@
 const express = require('express');
-const config = require('config');
+
 const router = express.Router();
 const uploadImageProfile = require('../middleware/uploadImageProfile')
 const isAuth = require('../middleware/passport-setup');
 
-const { getOwner, postProfile, getAllProfiles, getProfileByUserId, deleteProfile } = require('../controllers/profile.controller');
-const { profileRules, validator } = require('../middleware/validatorProfile')
+const { getOwner,
+      postProfile,
+      getAllProfiles,
+      getProfileByUserId,
+      deleteProfile,
+      putSeasonalProduct,
+      deleteSeasonalProduct
+} = require('../controllers/profile.controller');
+
+const { profileRules,
+      validator,
+
+} = require('../middleware/validatorProfile');
+
+const { SeasonalProductRules } = require('../middleware/validatorSeasonalProduct')
 //get models
 
 //@route GET /profile/owner
@@ -33,5 +46,13 @@ router.get('/user/:user_id', getProfileByUserId);
 // @desc     Delete profile, user & posts
 // @access   Private
 router.delete('/', isAuth(), deleteProfile);
+// @route    PUT /profile/SeasonalProduct
+// @desc     Add SeasonalProduct to Profile
+// @access   Private
+router.put('/SeasonalProduct', isAuth(), SeasonalProductRules(), validator, putSeasonalProduct)
+// @route    DELETE /profile/SeasonalProduct/:SeasonalProduct_id
+// @desc     Delete SeasonalProduct from profile
+// @access   Private
+router.delete('/SeasonalProduct/:SeasonalProduct_id', isAuth(), deleteSeasonalProduct)
 
 module.exports = router;
