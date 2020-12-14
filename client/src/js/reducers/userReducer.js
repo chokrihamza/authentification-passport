@@ -1,24 +1,23 @@
 import {
-
   REGISTER_FAIL,
   REGISTER_USER,
   REGISTER_SUCCESS,
   LOGOUT_USER,
+  GET_USER,
+  GET_USER_SUCCESS,
+  GET_USER_FAIL,
 } from "../constants/action-types.js";
 import {
   LOGIN_FAIL,
   LOGIN_USER,
   LOGIN_SUCCESS,
 } from "../constants/action-types.js";
-import {
-  GET_PROFILE,
-  GET_PROFILE_SUCCESS,
-  GET_PROFILE_FAIL,
-} from "../constants/action-types.js";
+
 const initialState = {
-  loading: false,
+  loadUser: false,
   user: null,
   errors: null,
+  
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -26,64 +25,52 @@ const userReducer = (state = initialState, { type, payload }) => {
     case REGISTER_USER:
       return {
         ...state,
-        loading: true,
+        loadUser: true,
       };
     case REGISTER_SUCCESS:
       return {
         ...state,
-        loading: false,
+        loadUser: false,
         user: payload,
       };
     case REGISTER_FAIL:
       return {
         ...state,
-        loading: false,
+        loadUser: false,
         errors: payload,
       };
 
     case LOGIN_USER:
       return {
         ...state,
-        loading: true,
+        loadUser: true,
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        loading: false,
+        loadUser: false,
         token: payload,
       };
     case LOGIN_FAIL:
       return {
         ...state,
-        loading: false,
+        loadUser: false,
         errors: payload,
       };
-    case GET_PROFILE:
-      return {
-        ...state,
-        loading: true,
-      };
-    case GET_PROFILE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        isAuth: payload,
-        user: payload,
-      };
-    case GET_PROFILE_FAIL:
-      return {
-        ...state,
-        loading: false,
-        errors: payload,
-      };
+
     case LOGOUT_USER:
       localStorage.removeItem("token");
-      return { user: null, loading: false, errors: null };
+      return { user: null, loadUser: false, errors: null };
+    case GET_USER:
+      return { ...state, loadUser: true };
+    case GET_USER_SUCCESS:
+      return { ...state, loadUser: false, user: payload };
+    case GET_USER_FAIL:
+      return { ...state, loadUser: false, errors: payload };
 
     default:
       return state;
   }
-
-}
+};
 
 export default userReducer;
