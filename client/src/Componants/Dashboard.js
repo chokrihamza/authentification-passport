@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { logout } from "../js/actions";
-const Dashboard = ({ user }) => {
+import { logout } from "../js/actions/actionUser";
+const Dashboard = ({user}) => {
+
 
   const dispatch = useDispatch();
   const history = useHistory();
+  
   return (
     <div>
       <h1 className="mt-4">Dashboard</h1>

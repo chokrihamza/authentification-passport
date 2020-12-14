@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux';
-import userReducer from './userReducer';
+import { combineReducers } from "redux";
+import userReducer from "./userReducer";
+import profileReducer from "./profileReducer";
+import toggleReducer from "./toggleReducer";
 export default combineReducers({
-      userReducer
-
-})
-
-
+  userReducer,
+  profileReducer,
+  toggleReducer
+});
