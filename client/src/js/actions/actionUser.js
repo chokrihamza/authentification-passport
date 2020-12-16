@@ -9,6 +9,7 @@ import {
   GET_USER,
   GET_USER_FAIL,
   GET_USER_SUCCESS,
+  EMPTY_USER
 } from "../constants/action-types";
 import axios from "axios";
 export const register = (newuser) => async (dispatsh) => {
@@ -71,3 +72,8 @@ export const logout = () => {
     type: LOGOUT_USER,
   };
 };
+
+export const EmptyUser = () => {
+  return { type: EMPTY_USER }
+
+}

@@ -28,3 +28,5 @@ export const GET_OWNER_PROFILE_FAIL = "GET_OWNER_PROFILE_FAIL";
 
 //action to empty profile in logout
 export const EMPTY_PROFILE = "EMPTY_PROFILE";
+//action to empty user in logout
+export const EMPTY_USER = "EMPTY_USER";

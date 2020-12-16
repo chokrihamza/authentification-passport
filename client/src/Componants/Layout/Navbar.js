@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { logout } from "../../js/actions/actionUser";
+import { EmptyUser, logout } from "../../js/actions/actionUser";
 import { EmptyProfile } from "../../js/actions/actionprofile"
 const NavbarPage = () => {
       const [state, setState] = useState({
@@ -31,16 +31,16 @@ const NavbarPage = () => {
                   <MDBCollapse id="navbarCollapse3" isOpen={state.collapseID} navbar>
                         <MDBNavbarNav right>
                               <MDBNavItem>
-                                    <MDBNavLink className="waves-effect waves-light" to="#!">
+                                    <MDBNavLink className="waves-effect waves-light" to='/login'>
                                           <i className="fas fa-sign-in-alt"></i>
 
-                                          <Link to='/login'>SignIn</Link>
+                                          SignIn
                                     </MDBNavLink>
                               </MDBNavItem>
                               <MDBNavItem>
-                                    <MDBNavLink className="waves-effect waves-light" to="#!">
+                                    <MDBNavLink className="waves-effect waves-light" to='/register' >
                                           <i className="fas fa-user-plus"></i>
-                                          <Link to='/register'>SignUp</Link></MDBNavLink>
+                                          SignUp</MDBNavLink>
                               </MDBNavItem>
                               {profile ?
                                     (<MDBNavItem>
@@ -50,7 +50,7 @@ const NavbarPage = () => {
                                           </MDBDropdownToggle>
                                                 <MDBDropdownMenu className="dropdown-default" right>
                                                       <MDBDropdownItem >My Profile</MDBDropdownItem>
-                                                      <MDBDropdownItem onClick={() => { dispatch(logout()); dispatch(EmptyProfile()); history.push("/") }}>Log out</MDBDropdownItem>
+                                                      <MDBDropdownItem onClick={() => { dispatch(logout()); dispatch(EmptyProfile()); dispatch(EmptyUser()); history.push("/") }}>Log out</MDBDropdownItem>
                                                 </MDBDropdownMenu>
                                           </MDBDropdown>
                                     </MDBNavItem>

@@ -6,6 +6,7 @@ import {
   GET_USER,
   GET_USER_SUCCESS,
   GET_USER_FAIL,
+  EMPTY_USER
 } from "../constants/action-types.js";
 import {
   LOGIN_FAIL,
@@ -67,7 +68,12 @@ const userReducer = (state = initialState, { type, payload }) => {
       return { ...state, loadUser: false, user: payload };
     case GET_USER_FAIL:
       return { ...state, loadUser: false, errors: payload };
-
+    case EMPTY_USER:
+      return {
+        ...state, loadUser: false,
+        user: null,
+        errors: null,
+      }
     default:
       return state;
   }

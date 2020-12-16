@@ -8,7 +8,8 @@ import {
   GET_OWNER_PROFILE,
   GET_OWNER_PROFILE_FAIL,
   GET_OWNER_PROFILE_SUCCESS,
-  EMPTY_PROFILE
+  EMPTY_PROFILE,
+
 } from "../constants/action-types.js";
 import axios from "axios";
 
@@ -82,3 +83,4 @@ export const EmptyProfile = () => {
   return { type: EMPTY_PROFILE }
 
 }
+
