@@ -1,0 +1,16 @@
+.design_post {
+    border-radius: 5% ;
+    background-color: white;
+    width: 30%;
+}
+.design_title {
+    text-align: center;
+    font-size: 140%;
+    font-weight: bold;
+    margin-bottom: 0%;
+}
+.design_info {
+    font-size: 80%;
+    text-align: center;
+    color: gray;
+}

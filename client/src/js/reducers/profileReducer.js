@@ -2,9 +2,6 @@ import {
   POST_PROFILE,
   POST_PROFILE_FAIL,
   POST_PROFILE_SUCCESS,
-  GET_PROFILE,
-  GET_PROFILE_SUCCESS,
-  GET_PROFILE_FAIL,
   GET_OWNER_PROFILE,
   GET_OWNER_PROFILE_SUCCESS,
   GET_OWNER_PROFILE_FAIL,
@@ -22,30 +19,11 @@ const initialState = {
 const profileReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case POST_PROFILE:
-      return { ...state, load: true };
+      return { ...state, loadProfile: true };
     case POST_PROFILE_SUCCESS:
-      return { ...state, load: false, response: payload };
+      return { ...state, loadProfile: false, response: payload };
     case POST_PROFILE_FAIL:
-      return { ...state, load: false, errors: payload };
-    case GET_PROFILE:
-      return {
-        ...state,
-        loadProfile: true,
-      };
-    case GET_PROFILE_SUCCESS:
-      return {
-        ...state,
-        loadProfile: false,
-        
-        profile: payload,
-      };
-    case GET_PROFILE_FAIL:
-      return {
-        ...state,
-        loadProfile: false,
-        errors: payload,
-        
-      };
+      return { ...state, loadProfile: false, errors: payload };
       case GET_OWNER_PROFILE:
       return {
         ...state,

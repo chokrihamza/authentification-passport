@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Signup from './Componants/Signup';
-import Signin from './Componants/Signin';
-import Profile from './Componants/Profile';
-import Welcom from './Componants/Welcom';
-import NavbarPage from './Componants/Layout/Navbar';
-import Sidebare from './Componants/Layout/Sidebar';
+import Signup from './Pages/Signup';
+import Signin from './Pages/Signin';
+import Dashboard from './Pages/Dashboard';
+import Welcom from './Pages/Welcom';
+import NavbarPage from './Components/Layout/Navbar';
+import Sidebare from './Components/Layout/Sidebar';
+
 
 
 
@@ -14,17 +15,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={NavbarPage} />
-        <Route exact path='/' component={Welcom} />
+        <Route exact path='/Dashboard' component={Dashboard} />
         <Route path='/register' component={Signup} />
         <Route path='/login' component={Signin} />
-        <Route path='/profile' component={Profile} />
-
-
-
-
-
+        {/* <Route path='/profile' component={Profile} /> */}
       </Switch>
-
     </BrowserRouter>
 
   )
