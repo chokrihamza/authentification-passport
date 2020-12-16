@@ -6,8 +6,8 @@ import { login } from "../js/actions/actionUser";
 import { toggleFalse } from "../js/actions/actionToggle";
 const Signin = () => {
   const dispatch = useDispatch();
-  
-  const loading = useSelector((state) => state.userReducer.loading);
+
+  const loadUser = useSelector((state) => state.userReducer.loadUser);
   const errors = useSelector((state) => state.userReducer.errors);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -44,9 +44,9 @@ const Signin = () => {
               </button>
             </div>
           ) : null}
-          { localStorage.getItem("token")  ? (
+          {localStorage.getItem("token") ? (
             <Redirect to="/profile" />
-          ) : loading ? (
+          ) : loadUser ? (
             <div className="alert alert-info" role="alert">
               Please wait
             </div>

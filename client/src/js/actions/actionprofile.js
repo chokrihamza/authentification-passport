@@ -7,7 +7,8 @@ import {
   POST_PROFILE_FAIL,
   GET_OWNER_PROFILE,
   GET_OWNER_PROFILE_FAIL,
-  GET_OWNER_PROFILE_SUCCESS
+  GET_OWNER_PROFILE_SUCCESS,
+  EMPTY_PROFILE
 } from "../constants/action-types.js";
 import axios from "axios";
 
@@ -76,3 +77,8 @@ export const getOwnerProfile = () => async (dispatsh) => {
       dispatsh({type: GET_OWNER_PROFILE_FAIL, payload:error.response.data})
   }
 };
+
+export const EmptyProfile = () => {
+  return { type: EMPTY_PROFILE }
+
+}

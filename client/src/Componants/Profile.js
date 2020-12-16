@@ -12,21 +12,21 @@ const Profile = () => {
       const loadUser = useSelector(state => state.userReducer.loadUser)
       const loadProfile = useSelector(state => state.profileReducer.loadProfile)
       const dispatch = useDispatch();
-      
-      
+
+
       useEffect(() => {
             dispatch(getOwnerProfile());
             dispatch(getUser());
       }, []);
-if (loadProfile && loadUser) {
-     return <h1>loading</h1>    
-}else if (!user){
-  return <Redirect to="/login"/>
-}else{
-   return (  <div>
-            <Dashboard user={user}/>
-         </div>)
-}  
+      if (loadProfile && loadUser) {
+            return <h1>loading</h1>
+      } else if (!user) {
+            return <Redirect to="/login" />
+      } else {
+            return (<div>
+                  <Dashboard user={user} />
+            </div>)
+      }
 }
 
 export default Profile

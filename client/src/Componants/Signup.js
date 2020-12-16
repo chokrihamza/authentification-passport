@@ -6,7 +6,7 @@ import { register } from "../js/actions/actionUser";
 import { Redirect } from "react-router-dom";
 import { toggleTrue } from "../js/actions/actionToggle";
 const Signup = () => {
-  const loading = useSelector((state) => state.userReducer.loading);
+  const loadUser = useSelector((state) => state.userReducer.loadUser);
   const user = useSelector((state) => state.userReducer.user);
   const errors = useSelector((state) => state.userReducer.errors);
 
@@ -15,7 +15,7 @@ const Signup = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
-  
+
   const addUser = (e) => {
     e.preventDefault();
     dispatch(
@@ -37,24 +37,24 @@ const Signup = () => {
           </h1>
           {errors
             ? errors.errors.map((e, i) => (
-                <div
-                  key={i}
-                  className="alert alert-warning alert-dismissible fade show"
-                  role="alert"
+              <div
+                key={i}
+                className="alert alert-warning alert-dismissible fade show"
+                role="alert"
+              >
+                <strong>{e.param}</strong> ${e.msg}.
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
                 >
-                  <strong>{e.param}</strong> ${e.msg}.
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="alert"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              ))
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            ))
             : null}
-          {loading ? (
+          {loadUser ? (
             <div className="alert alert-info" role="alert">
               Please wait
             </div>

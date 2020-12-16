@@ -1,7 +1,9 @@
 import React from "react";
+import FlashMessage from "react-flash-message";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../js/actions/actionUser";
+import NavbarPage from '../Componants/Layout/Navbar';
 const Dashboard = ({user}) => {
 
 
@@ -10,11 +12,14 @@ const Dashboard = ({user}) => {
   
   return (
     <div>
-      <h1 className="mt-4">Dashboard</h1>
-      <p className="lead mb-3">
-        Welcome {user.name} we are happy to see you again
-      </p>
-      <button className="btn btn-secondary" onClick={() => { dispatch(logout()); history.push("/") }}>Logout</button>
+      <NavbarPage />
+      <FlashMessage duration={2000}>
+        <div className="alert alert-info" role="alert">
+          Welcome {user.name} we are happy to see you
+              </div>
+      </FlashMessage>
+
+
     </div>
   );
 };

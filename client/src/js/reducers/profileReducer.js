@@ -8,6 +8,7 @@ import {
   GET_OWNER_PROFILE,
   GET_OWNER_PROFILE_SUCCESS,
   GET_OWNER_PROFILE_FAIL,
+  EMPTY_PROFILE,
 } from "../constants/action-types";
 
 // initialState
@@ -64,6 +65,16 @@ const profileReducer = (state = initialState, { type, payload }) => {
         errors:payload,
        
       };
+    case EMPTY_PROFILE:
+      return {
+        ...state,
+        loadProfile: false,
+        response: null,
+        errors: null,
+        profile: null,
+      };
+
+
     default:
       return state;
   }

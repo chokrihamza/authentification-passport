@@ -4,7 +4,7 @@ require('./config/dbConnect')();
 /***End of Third step */
 //@ etape 1
 //touch server.js
-const path = require('path');
+
 const express = require('express');
 const app = express();
 const config = require('config');
