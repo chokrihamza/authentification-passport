@@ -45,7 +45,7 @@ const Signin = () => {
             </div>
           ) : null}
           {localStorage.getItem("token") ? (
-            <Redirect to="/profile" />
+            <Redirect to="/Dashboard" />
           ) : loadUser ? (
             <div className="alert alert-info" role="alert">
               Please wait

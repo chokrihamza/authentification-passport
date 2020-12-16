@@ -1,7 +1,5 @@
 import {
-  GET_PROFILE,
-  GET_PROFILE_SUCCESS,
-  GET_PROFILE_FAIL,
+  
   POST_PROFILE,
   POST_PROFILE_SUCCESS,
   POST_PROFILE_FAIL,
@@ -13,30 +11,7 @@ import {
 } from "../constants/action-types.js";
 import axios from "axios";
 
-// get profile
-export const getProfile = () => async (dispatsh) => {
-  const token = localStorage.getItem("token");
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-  dispatsh({ type: GET_PROFILE });
-  try {
-    const isAuth = await axios.get("/profile", config);
 
-    dispatsh({
-      type: GET_PROFILE_SUCCESS,
-      payload: isAuth.data,
-    });
-    console.log(isAuth.data);
-  } catch (error) {
-    dispatsh({
-      type: GET_PROFILE_FAIL,
-      payload: error.response.data,
-    });
-  }
-};
 
 // post profile
 export const postProfile = (user) => async (dispatsh) => {
@@ -50,8 +25,8 @@ export const postProfile = (user) => async (dispatsh) => {
   try {
     const result = await axios.post("/profile", user, config);
     dispatsh(
-      { type: POST_PROFILE_SUCCESS, payload: result.data.message },
-      getProfile()
+      { type: POST_PROFILE_SUCCESS, payload: result.data.message }
+     
     );
   } catch (error) {
     dispatsh({
