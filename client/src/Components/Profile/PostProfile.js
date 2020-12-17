@@ -47,8 +47,8 @@ const PostProfile = () => {
   data.append("farmerDomaine", farmerDomaine);
   data.append("image", image);
 
-  const handleChange = (event) => {
-    setCountry(event.target.value);
+  const handleChange = (e) => {
+    setCountry(e.target.value);
   };
 
   const handleClose = () => {
@@ -58,6 +58,7 @@ const PostProfile = () => {
   const handleOpen = () => {
     setOpen(true);
   };
+
   console.log(image);
   return (
     <div className="design_post registration-form">
@@ -118,7 +119,7 @@ const PostProfile = () => {
               onOpen={handleOpen}
               value={country}
               onChange={(e) => {
-                setLocation(e.target.value);
+                handleChange(e);setLocation(e.target.value);
               }}
             >
               <MenuItem value="">
