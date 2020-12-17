@@ -14,7 +14,7 @@ const Dashboard = () => {
   const loadUser = useSelector((state) => state.userReducer.loadUser);
   const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     dispatch(getOwnerProfile());
     dispatch(getUser());
