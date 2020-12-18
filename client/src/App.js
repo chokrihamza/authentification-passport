@@ -1,11 +1,13 @@
+
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Signup from './Pages/Signup';
 import Signin from './Pages/Signin';
 import Dashboard from './Pages/Dashboard';
-import NavbarPage from './Components/Layout/Navbar';
+
 import Sidebare from './Components/Layout/Sidebar';
-import GetProfile from './Components/Profile/GetProfile';
+
 import Profile from './Pages/Profile';
 import Welcom from './Pages/Welcom';
 

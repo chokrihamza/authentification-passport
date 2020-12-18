@@ -24,7 +24,7 @@ exports.getOwner = async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 exports.postProfile = async (req, res) => {
-  
+ 
   // destructure the request
   const { location, farmerDomaine, adresse } = req.body;
   
