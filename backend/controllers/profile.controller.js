@@ -24,20 +24,21 @@ exports.getOwner = async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 exports.postProfile = async (req, res) => {
-  console.log(req.file);
+  
   // destructure the request
   const { location, farmerDomaine, adresse } = req.body;
-
+  
   const newprofile = {};
 
   newprofile.user = req.user.id;
   newprofile.location = location;
   newprofile.adresse = adresse;
+  
   if (req.file !== undefined) {
     newprofile.image = req.file.path;
   } else {
-    newprofile.image =
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwdrfree.com%2Fstock-vector%2Fdefault-picture&psig=AOvVaw1jaJOc5EOQN87EcLoYp9oR&ust=1607949087802000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDYmab7yu0CFQAAAAAdAAAAABAL";
+    newprofile.image ="uploads\1608301542757.png"
+      
   }
 
   // farmerDomaine - Spilt into array
@@ -46,6 +47,7 @@ exports.postProfile = async (req, res) => {
       .split(",")
       .map((skill) => skill.trim());
   }
+ 
 
   try {
     //creates new doc if no profile  is found
@@ -63,6 +65,7 @@ exports.postProfile = async (req, res) => {
       return res.json(profile);
     }
     //Create
+    
     profile = new Profile(newprofile);
     const result=await profile.save();
     res.status(200).send({message:"profile saved",response:result});

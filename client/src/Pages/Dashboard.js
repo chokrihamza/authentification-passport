@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom";
 import { getUser } from "../js/actions/actionUser";
 import { useEffect } from "react";
 import PostProfile from "../Components/Profile/PostProfile";
-import { getOwnerProfile,  } from "../js/actions/actionprofile";
+import { getOwnerProfile, } from "../js/actions/actionprofile";
+import { Spinner } from 'reactstrap';
 import FlashMessage from "react-flash-message";
 import "./Dashboard.css"
 import NavbarPage from "../Components/Layout/Navbar";
@@ -23,7 +24,11 @@ const Dashboard = () => {
     return (
       <>
         <NavbarPage />
-        <h1>loading</h1>
+        <Spinner style={{
+        position: 'absolute', left: '50%', top: '50%',
+        
+        }}
+          color="primary" />
       </>
     );
   } else if (!user) {

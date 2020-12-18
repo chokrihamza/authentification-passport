@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { postProfile } from "../../js/actions/actionprofile";
 
 import "./PostProfile.css";
@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 60,
   },
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: "100%",
     },
   },
 
@@ -58,16 +58,16 @@ const PostProfile = () => {
   const handleOpen = () => {
     setOpen(true);
   };
-
-  console.log(image);
+ const userName = useSelector(state => state.userReducer.user.name)
+  
   return (
-    <div className="design_post registration-form">
+    <div className="design_post registration-form"  >
       <h4 className="design_title">BUILD YOUR PROFILE</h4>
       <p className="design_info">
-        This information will let us know more about you.
+        This information will let us know more about you <i>{userName}</i> .
       </p>
 
-      <div className="design-coordonation">
+      <div className="design-coordonation" style={{position:"relative"}} >
         <div className="design-input-image">
           <div className="form-icon">
             {image ? (
@@ -81,13 +81,14 @@ const PostProfile = () => {
 
           <div
             className="file-upload"
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{ position:"relative", display: "flex", justifyContent: "center" }}
           >
             <input
               accept="image/*"
               className={classes.input}
               id="icon-button-file"
               type="file"
+             
               onChange={(event) => {
                 const file = event.target.files[0];
 
@@ -106,15 +107,17 @@ const PostProfile = () => {
           </div>
         </div>
 
-        <div className="design-other-input">
+        <div className="design-other-input"  >
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-controlled-open-select-label">
+            <InputLabel  id="demo-controlled-open-select-label">
               Location
             </InputLabel>
             <Select
+              required
               labelId="demo-controlled-open-select-label"
               id="demo-controlled-open-select"
               open={open}
+             
               onClose={handleClose}
               onOpen={handleOpen}
               value={country}
