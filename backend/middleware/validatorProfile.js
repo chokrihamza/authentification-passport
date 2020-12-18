@@ -1,9 +1,9 @@
 const { check, validationResult } = require('express-validator');
 
 exports.profileRules = () => [
-      check('location', 'location is required ').notEmpty(),
-      check('farmerDomaine', 'farmerDomaine is required ').notEmpty(),
-      check('adresse', 'adresse is required ').notEmpty(),
+      check('location', 'location is required ').not().isEmpty(),
+      check('farmerDomaine', 'farmerDomaine is required ').not().isEmpty(),
+      check('adresse', 'adresse is required ').not().isEmpty(),
 ]
 
 exports.validator = (req, res, next) => {

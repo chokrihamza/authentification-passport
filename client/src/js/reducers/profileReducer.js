@@ -11,7 +11,6 @@ import {
 // initialState
 const initialState = {
   loadProfile: false,
-  response: null,
   errors: null,
   profile: null,
 };
@@ -21,7 +20,7 @@ const profileReducer = (state = initialState, { type, payload }) => {
     case POST_PROFILE:
       return { ...state, loadProfile: true };
     case POST_PROFILE_SUCCESS:
-      return { ...state, loadProfile: false, response: payload };
+      return { ...state, loadProfile: false, profile: payload };
     case POST_PROFILE_FAIL:
       return { ...state, loadProfile: false, errors: payload };
       case GET_OWNER_PROFILE:
@@ -47,7 +46,6 @@ const profileReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loadProfile: false,
-        response: null,
         errors: null,
         profile: null,
       };

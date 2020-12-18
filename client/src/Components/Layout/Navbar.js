@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { EmptyUser, logout } from "../../js/actions/actionUser";
 import { EmptyProfile } from "../../js/actions/actionprofile"
-const NavbarPage = () => {
+ const NavbarPage = () => {
       const [state, setState] = useState({
             collapseID: ""
       })
@@ -49,7 +49,10 @@ const NavbarPage = () => {
                                                       <MDBIcon icon="user" className="mr-1" />Profile
                                           </MDBDropdownToggle>
                                                 <MDBDropdownMenu className="dropdown-default" right>
-                                                      <MDBDropdownItem >My Profile</MDBDropdownItem>
+                                                      
+                                                            <MDBDropdownItem>
+                                                            <Link to='profile' > My Profile</Link>
+                                                            </MDBDropdownItem>
                                                       <MDBDropdownItem onClick={() => { dispatch(logout()); dispatch(EmptyProfile()); dispatch(EmptyUser()); history.push("/") }}>Log out</MDBDropdownItem>
                                                 </MDBDropdownMenu>
                                           </MDBDropdown>
@@ -66,4 +69,4 @@ const NavbarPage = () => {
 
 }
 
-export default NavbarPage;
+export default NavbarPage
