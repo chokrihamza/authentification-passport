@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import PostProfile from "../Components/Profile/PostProfile";
 import { getOwnerProfile,  } from "../js/actions/actionprofile";
 import FlashMessage from "react-flash-message";
-
+import "./Dashboard.css"
 import NavbarPage from "../Components/Layout/Navbar";
 const Dashboard = () => {
   const profile = useSelector((state) => state.profileReducer.profile);
@@ -37,7 +37,7 @@ const Dashboard = () => {
             Welcome {user.name} we are happy to see you
           </div>
         </FlashMessage>
-        {!profile ? <PostProfile/>: <h1>annouces</h1>}
+        {!profile ? <div className="design-postProfile"><PostProfile/></div>: <h1>annouces</h1>}
       </div>
     );
   }
