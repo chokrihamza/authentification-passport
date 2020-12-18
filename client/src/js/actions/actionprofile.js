@@ -24,7 +24,9 @@ export const postProfile = (user) => async (dispatsh) => {
   };
   dispatsh({ type: POST_PROFILE });
   try {
-    const result = await axios.post("/profile",user,config);
+    
+    const result = await axios.post("/profile", user, config);
+   
     dispatsh(
       { type: POST_PROFILE_SUCCESS, payload: result.data}
      

@@ -29,9 +29,9 @@ exports.login = async (req, res) => {
       const { email, password } = req.body;
       try {
             const user = await User.findOne({ email });
-            if (!user) return res.status(404).json({ msg: "bad credentials" });
+            if (!user) return res.status(404).json({ msg: "bad credentials"});
             const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) return res.status(401).json({ msg: "bad credentials" });
+            if (!isMatch) return res.status(401).json({ msg:"bad credentials" });
             //token go here npm json web token
             const payload = {
                   id: user._id,

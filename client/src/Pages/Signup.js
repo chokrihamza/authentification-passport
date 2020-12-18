@@ -35,7 +35,7 @@ const Signup = () => {
             <i className="fas fa-user-plus"></i>
             Register
           </h1>
-          {errors
+          {Array.isArray(errors)===true
             ? errors.errors.map((e, i) => (
               <div
                 key={i}
