@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { EmptyUser, logout } from "../../js/actions/actionUser";
 import { EmptyProfile } from "../../js/actions/actionprofile"
+import "./Navbar.css"
  const NavbarPage = () => {
       const [state, setState] = useState({
             collapseID: ""

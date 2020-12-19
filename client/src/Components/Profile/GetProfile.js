@@ -1,150 +1,66 @@
-
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { useSelector,useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { getOwnerProfile } from "../../js/actions/actionprofile";
+import "./GetProfile.css";
+import { Redirect } from "react-router-dom";
+import Edit78 from "../../icons/edit-78";
+import TrashSimple from "../../icons/trash-simple";
+function GetProfile() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOwnerProfile());
+  }, []);
+  const user = useSelector((state) => state.profileReducer.profile.user);
+  const profile = useSelector((state) => state.profileReducer.profile);
+  const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
 
-import { Redirect } from 'react-router-dom';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-}));
- function GetProfile() {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const dispatch = useDispatch()
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
- 
-useEffect(() => {
-  dispatch(getOwnerProfile())
-
-},[])
-  const user = useSelector(state =>state.profileReducer.profile.user)    
-  console.log(user)
-  const loadProfile = useSelector(state => state.profileReducer.loadProfile)
- 
-  
   if (!user) {
-   return <Redirect to="/"/>
- }
-  else if(loadProfile) {
-    return <h1>loading</h1>
+    return <Redirect to="/" />;
+  } else if (loadProfile) {
+    return <h1>loading</h1>;
   } else {
     return (
-        
-      <Card className={classes.root}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              {user.name.slice(0, 2)}
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-         title={user.name}
-         subheader={`email:${user.email}
-         Phone:${user.phoneNumber}`}
-                    
-        />
-              
-             
-        <CardMedia
-          component="img"
-          alt="userImage"
-          height="240"
-        //image={userImage}
-        
-        />
-      
-             
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-              minutes.
-          </Typography>
-            <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-             
-          </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-              
-          </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-          </CardContent>
-        </Collapse>
-      </Card>
+      <div className="card-item">
+        <div className="card-header">
+          <div className="card-header__bg"></div>
+          <img src={profile.image} className="card-header__img" />
+          <div class="card-process">
+            <button href="#" class="process__item">
+              <div class="process-icon follow">
+               <Edit78/>
+              </div>
+              <span class="process-txt">Edit</span>
+            </button>
+            <button href="#" class="process__item">
+              <div class="process-icon message">
+                <TrashSimple/>
+              </div>
+              <span class="process-txt">Delete</span>
+            </button>
+          </div>
+          <div className="card-header__text">
+            <span className="card-header__name">{user.name}</span>
+            <span className="card-header__job">{user.phoneNumber}</span>
+          </div>
+        </div>
+        <ul className="card-detail">
+          <li className="card-detail__li">
+            <p className="card-detail__txt">Location:</p>
+            <p className="card-detail__str">{profile.location}</p>
+          </li>
+          <li className="card-detail__li">
+            <p className="card-detail__txt">adresse:</p>
+            <p className="card-detail__str">{profile.adresse}</p>
+          </li>
+          <li className="card-detail__li">
+            <p className="card-detail__txt">Farmer Domaine:</p>
+            <p className="card-detail__str1">{profile.farmerDomaine}</p>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
 
-
-export default GetProfile
+export default GetProfile;

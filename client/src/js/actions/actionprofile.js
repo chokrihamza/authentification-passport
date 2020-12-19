@@ -19,7 +19,7 @@ export const postProfile = (user) => async (dispatsh) => {
   const config = {
     headers: {
       Authorization: token,
-      
+     
     }
   };
   dispatsh({ type: POST_PROFILE });
