@@ -12,7 +12,7 @@ const PORT = config.get('PORT');
 // Express body parser
 app.use('/imagesProduct', express.static('imagesProduct'));
 app.use('/uploads', express.static('uploads'));
-
+app.use('/assets', express.static('assets'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

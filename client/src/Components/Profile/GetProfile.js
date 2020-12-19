@@ -4,44 +4,53 @@ import { useEffect } from "react";
 import { getOwnerProfile } from "../../js/actions/actionprofile";
 import "./GetProfile.css";
 import { Redirect } from "react-router-dom";
-import Edit78 from "../../icons/edit-78";
-import TrashSimple from "../../icons/trash-simple";
+import { Spinner } from 'reactstrap';
+
 function GetProfile() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getOwnerProfile());
-  }, []);
+  
   const user = useSelector((state) => state.profileReducer.profile.user);
   const profile = useSelector((state) => state.profileReducer.profile);
   const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
-
-  if (!user) {
+  const token = localStorage.getItem("token");
+  
+  if (!token) {
     return <Redirect to="/" />;
   } else if (loadProfile) {
-    return <h1>loading</h1>;
+    return <Spinner style={{
+      position: 'absolute', left: '50%', top: '50%',
+      
+      }}
+        color="primary" />;
   } else {
     return (
-      <div className="card-item">
+      
+      <div className="card-item" > 
+      
         <div className="card-header">
           <div className="card-header__bg"></div>
           <img src={profile.image} className="card-header__img" />
-          <div class="card-process">
-            <button href="#" class="process__item">
-              <div class="process-icon follow">
-               <Edit78/>
+          <div className="card-process">
+            <button href="#" className="process__item">
+              <div className="process-icon follow">
+              <i className="far fa-edit"></i>
+                
               </div>
-              <span class="process-txt">Edit</span>
+              <span className="process-txt">Edit</span>
             </button>
-            <button href="#" class="process__item">
-              <div class="process-icon message">
-                <TrashSimple/>
+            <button href="#" className="process__item">
+              <div className="process-icon message">
+              <i className="fas fa-trash-alt"></i>
+               
               </div>
-              <span class="process-txt">Delete</span>
+              <span className="process-txt">Delete</span>
             </button>
           </div>
           <div className="card-header__text">
+          
             <span className="card-header__name">{user.name}</span>
-            <span className="card-header__job">{user.phoneNumber}</span>
+             <span className="card-header__job">Phone:{user.phoneNumber}</span>
+             <span className="card-header__job">email:{user.email}</span>
+            
           </div>
         </div>
         <ul className="card-detail">
@@ -55,10 +64,18 @@ function GetProfile() {
           </li>
           <li className="card-detail__li">
             <p className="card-detail__txt">Farmer Domaine:</p>
-            <p className="card-detail__str1">{profile.farmerDomaine}</p>
+            <ul>
+            {profile.farmerDomaine.map((e, i) => (
+              <li  key={i} className="card-detail__str1" colSpan="2">{e}</li>
+             ))}
+             </ul>
           </li>
+
         </ul>
-      </div>
+        <i className="card-header__job">CreatedAt:{profile.updatedAt}</i>
+          </div>
+     
+      
     );
   }
 }

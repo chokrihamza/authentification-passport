@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { EmptyUser, logout } from "../../js/actions/actionUser";
-import { EmptyProfile } from "../../js/actions/actionprofile"
+import { EmptyProfile, getOwnerProfile } from "../../js/actions/actionprofile";
+
 import "./Navbar.css"
  const NavbarPage = () => {
       const [state, setState] = useState({
@@ -21,6 +22,7 @@ import "./Navbar.css"
       const dispatch = useDispatch();
       const history = useHistory();
       const profile = useSelector(state => state.profileReducer.profile)
+      
 
       return (
 
@@ -43,6 +45,7 @@ import "./Navbar.css"
                                           <i className="fas fa-user-plus"></i>
                                           SignUp</MDBNavLink>
                               </MDBNavItem>
+                             
                               {profile ?
                                     (<MDBNavItem>
                                           <MDBDropdown>
@@ -52,15 +55,13 @@ import "./Navbar.css"
                                                 <MDBDropdownMenu className="dropdown-default" right>
                                                       
                                                             <MDBDropdownItem>
-                                                            <Link to='profile' > My Profile</Link>
+                                                            <Link to='profile' onClick={()=> {dispatch(getOwnerProfile())}}> My Profile</Link>
                                                             </MDBDropdownItem>
                                                       <MDBDropdownItem onClick={() => { dispatch(logout()); dispatch(EmptyProfile()); dispatch(EmptyUser()); history.push("/") }}>Log out</MDBDropdownItem>
                                                 </MDBDropdownMenu>
                                           </MDBDropdown>
                                     </MDBNavItem>
                                     ) : null}
-
-
 
                         </MDBNavbarNav>
                   </MDBCollapse>

@@ -24,7 +24,19 @@ exports.getOwner = async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 exports.postProfile = async (req, res) => {
- 
+  
+  
+  if (req.body.location === 'undefined') {
+    return res.status(400).json({message:"location is required"});
+  }
+  if (req.body.farmerDomaine==='undefined') {
+    return res.status(400).json({message:"farmerDomaine is required"});
+  }
+  if (req.body.farmerDomaine==='undefined') {
+    return res.status(400).json({message:"adresse is required"});
+  }
+
+  
   // destructure the request
   const { location, farmerDomaine, adresse } = req.body;
   
@@ -37,7 +49,7 @@ exports.postProfile = async (req, res) => {
   if (req.file !== undefined) {
     newprofile.image = req.file.path;
   } else {
-    newprofile.image ="uploads\1608301542757.png"
+    newprofile.image ="assets\\avatarimage.png"
       
   }
 

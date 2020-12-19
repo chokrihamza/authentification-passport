@@ -56,7 +56,7 @@
 }
 .card-header__img {
   position: relative;
-  width: 120px;
+  width: 55%;
   height: 120px;
   border-radius: 50%;
   margin-left: auto;
@@ -158,11 +158,11 @@
 }
 .follow :hover {
   color: #d6da00;
-  opacity: 0.6;
+  
 }
 .message:hover {
   color: #d61616;
-  opacity: 0.6;
+  
 }
 .process-txt {
     text-align: center;

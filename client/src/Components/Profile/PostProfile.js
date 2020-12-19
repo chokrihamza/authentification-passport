@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { postProfile } from "../../js/actions/actionprofile";
-
+import FlashMessage from "react-flash-message";
 import "./PostProfile.css";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -58,9 +58,23 @@ const PostProfile = () => {
   const handleOpen = () => {
     setOpen(true);
   };
- const userName = useSelector(state => state.userReducer.user.name)
-  
+  const userName = useSelector(state => state.userReducer.user.name);
+  const profile = useSelector((state) => state.profileReducer.profile);
+  const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
+
   return (
+    <>
+      {loadProfile ? (
+            <div className="alert alert-info" role="alert">
+              Please wait
+            </div>
+          ) : profile ? (
+            <FlashMessage duration={1000}>
+              <div className="alert alert-danger" role="alert">
+                Check Again
+              </div>
+            </FlashMessage>
+          ) : null}
     <div className="design_post registration-form"  >
       <h4 className="design_title">BUILD YOUR PROFILE</h4>
       <p className="design_info">
@@ -182,7 +196,8 @@ const PostProfile = () => {
           Submit Profile
         </button>
       </div>
-    </div>
+      </div>
+      </>
   );
 };
 

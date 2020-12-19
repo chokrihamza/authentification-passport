@@ -30,7 +30,7 @@ router.get('/owner', isAuth(), getOwner);
 // @desc     Create or update user profile
 // @access   Private
 
-router.post('/', isAuth(),  profileRules(),uploadImageProfile, validator, postProfile);
+router.post('/', isAuth(),uploadImageProfile, postProfile);
 
 // @route    GET /profile
 // @desc     Get all profiles

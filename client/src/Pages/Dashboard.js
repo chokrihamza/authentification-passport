@@ -9,18 +9,19 @@ import { Spinner } from 'reactstrap';
 import FlashMessage from "react-flash-message";
 import "./Dashboard.css"
 import NavbarPage from "../Components/Layout/Navbar";
+
 const Dashboard = () => {
   const profile = useSelector((state) => state.profileReducer.profile);
   const user = useSelector((state) => state.userReducer.user);
   const loadUser = useSelector((state) => state.userReducer.loadUser);
-  const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
+ const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
   const dispatch = useDispatch();
  
   useEffect(() => {
     dispatch(getOwnerProfile());
     dispatch(getUser());
   }, []);
-  if (loadProfile && loadUser) {
+  if ( loadProfile &&loadUser) {
     return (
       <>
         <NavbarPage />
@@ -42,7 +43,7 @@ const Dashboard = () => {
             Welcome {user.name} we are happy to see you
           </div>
         </FlashMessage>
-        {!profile ? <div className="design-postProfile"><PostProfile/></div>: <h1>annouces</h1>}
+        {!profile ? <div className="design-postProfile"><PostProfile/></div>: <h1>announce</h1>}
       </div>
     );
   }
