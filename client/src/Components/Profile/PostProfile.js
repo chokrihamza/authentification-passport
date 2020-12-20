@@ -11,7 +11,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-
+import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
   button: {
     display: "block",
@@ -61,20 +61,38 @@ const PostProfile = () => {
   const userName = useSelector(state => state.userReducer.user.name);
   const profile = useSelector((state) => state.profileReducer.profile);
   const loadProfile = useSelector((state) => state.profileReducer.loadProfile);
-
+  const errors = useSelector((state) => state.profileReducer.errors);
   return (
     <>
       {loadProfile ? (
-            <div className="alert alert-info" role="alert">
-              Please wait
-            </div>
-          ) : profile ? (
-            <FlashMessage duration={1000}>
-              <div className="alert alert-danger" role="alert">
-                Check Again
-              </div>
+        <Alert variant="filled" severity="info"
+        style={{
+          position: "fixed",
+          bottom: "2%",
+          right: "0%",
+       
+      }}
+        >
+        Please Wait
+      </Alert>
+            
+      ) : errors ? (
+          <div  style={{
+            position: "fixed",
+            bottom: "2%",
+            right: "0%",
+         
+        }}>
+          <FlashMessage duration={1000}
+            
+          >
+            <Alert variant="filled" severity="error" >
+             {errors.message}
+           </Alert>
             </FlashMessage>
-          ) : null}
+            </div>
+          ):null
+      }
     <div className="design_post registration-form"  >
       <h4 className="design_title">BUILD YOUR PROFILE</h4>
       <p className="design_info">

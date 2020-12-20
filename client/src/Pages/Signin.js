@@ -4,6 +4,7 @@ import FlashMessage from "react-flash-message";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../js/actions/actionUser";
 import { toggleFalse } from "../js/actions/actionToggle";
+import { UncontrolledAlert } from 'reactstrap';
 const Signin = () => {
   const dispatch = useDispatch();
 
@@ -28,34 +29,22 @@ const Signin = () => {
           <h1 className="text-center mb-3">
             <i className="fas fa-sign-in-alt"></i> Login
           </h1>
-          {errors ? (
-            <div
-              className="alert alert-warning alert-dismissible fade show"
-              role="alert"
-            >
-              <strong>{errors.msg}</strong>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          ) : null}
+         
           {localStorage.getItem("token") ? (
             <Redirect to="/Dashboard" />
           ) : loadUser ? (
             <div className="alert alert-info" role="alert">
               Please wait
             </div>
-          ) : errors ? (
+          ) : errors ? (<>
             <FlashMessage duration={1000}>
               <div className="alert alert-danger" role="alert">
                 Check Again
               </div>
-            </FlashMessage>
+                </FlashMessage>
+                <UncontrolledAlert color="info">
+                <strong>{errors.msg}</strong>
+               </UncontrolledAlert></>
           ) : null}
 
           <div className="form-group">
