@@ -1,15 +1,16 @@
 import React from 'react'
 import GetProfile from '../Components/Profile/GetProfile'
 import NavebarePage from '../Components/Layout/Navbar'
+import { Redirect } from "react-router-dom";
 const Profile = () => {
-      return (
-            
-            <div>
-          <NavebarePage/>
+      if (localStorage.getItem("token")) {
+          return  (<div>
+            <NavebarePage/>
             <GetProfile />
-            </div>
+            </div>)
+      }
             
-      )
+     return  <Redirect to="/Dashboard" />
+                       
 }
-
 export default Profile

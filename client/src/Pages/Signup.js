@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import { UncontrolledAlert } from 'reactstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../js/actions/actionUser";
 import { Redirect } from "react-router-dom";
@@ -35,30 +35,18 @@ const Signup = () => {
             <i className="fas fa-user-plus"></i>
             Register
           </h1>
-          {Array.isArray(errors)===true
-            ? errors.errors.map((e, i) => (
-              <div
-                key={i}
-                className="alert alert-warning alert-dismissible fade show"
-                role="alert"
-              >
-                <strong>{e.param}</strong> ${e.msg}.
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            ))
-            : null}
+          
           {loadUser ? (
             <div className="alert alert-info" role="alert">
               Please wait
             </div>
-          ) : (user) ? (
+          ) :Array.isArray(errors&&errors.errors)===true
+          ? errors.errors.map((e, i) => (
+            <UncontrolledAlert key={i} color="danger">
+             <strong>{e.param}</strong> ${e.msg}.
+            </UncontrolledAlert>
+              ))
+          : (user) ? (
             <Redirect to="/login" />
           ) : null}
           <div className="form-group">

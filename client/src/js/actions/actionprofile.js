@@ -6,7 +6,6 @@ import {
   GET_OWNER_PROFILE_FAIL,
   GET_OWNER_PROFILE_SUCCESS,
   EMPTY_PROFILE,
-  
   DELETE_PROFILE_SUCCESS,
   DELETE_PROFILE_FAIL,
 } from "../constants/action-types.js";
@@ -64,7 +63,7 @@ export const deleteProfile = () => async (dispatsh) => {
      const result = await axios.delete("/profile",config);
     dispatsh({ type: DELETE_PROFILE_SUCCESS ,payload:result.data.msg});
   } catch (error) {
-    dispatsh({ type: DELETE_PROFILE_FAIL, payload: error.ressponse.data });
+    dispatsh({ type: DELETE_PROFILE_FAIL, payload: error.response.data });
   }
 };
 export const EmptyProfile = () => {
