@@ -29,7 +29,7 @@ exports.postProfile = async (req, res) => {
   if (req.body.location === 'undefined') {
     return res.status(400).json({message:"location is required"});
   }
-  if (req.body.farmerDomaine==='undefined') {
+  if (req.body.adresse==='undefined') {
     return res.status(400).json({message:"farmerDomaine is required"});
   }
   if (req.body.farmerDomaine==='undefined') {

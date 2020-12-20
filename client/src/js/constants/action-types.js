@@ -22,7 +22,10 @@ export const GET_USER_FAIL = "GET_USER_FAIL";
 export const GET_OWNER_PROFILE = "GET_OWNER_PROFILE";
 export const GET_OWNER_PROFILE_SUCCESS = "GET_OWNER_PROFILE_SUCCES";
 export const GET_OWNER_PROFILE_FAIL = "GET_OWNER_PROFILE_FAIL";
+// action types for delete profile
 
+export const DELETE_PROFILE_SUCCESS = "DELETE_PROFILE_SUCCESS";
+export const DELETE_PROFILE_FAIL = "DELETE_PROFILE_FAIL";
 //action to empty profile in logout
 export const EMPTY_PROFILE = "EMPTY_PROFILE";
 //action to empty user in logout
